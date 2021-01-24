@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'top-stories',
+    loadChildren: () => import('./top-stories/top-stories.module').then( m => m.TopStoriesModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

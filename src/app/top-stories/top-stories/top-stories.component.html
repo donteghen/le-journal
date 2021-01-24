@@ -1,0 +1,10 @@
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Top Stories</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <app-items [items]='items'></app-items>
+    <ion-label>{{items.results[0].url}}</ion-label>
+  </ion-content>
