@@ -1,0 +1,7 @@
+{
+  "name": "le-journal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
