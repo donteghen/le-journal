@@ -4,5 +4,6 @@ export interface Items {
     offset: number;
     limit: number;
     total?: number;
+    refresh?:boolean;
     results: Item[];
     }

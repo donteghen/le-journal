@@ -1,8 +1,12 @@
 export interface Item {
-    id: number;
-    title: string;
-    url: string;
-    by: string;
-    time: number;
-    score: number;
+by: string
+descendants: number,
+id: number,
+kids: [],
+score: number,
+time: number,
+title: string,
+type: string,
+url: string
     }
+

@@ -11,6 +11,8 @@ export class ItemComponent implements OnInit {
   @Input() item: Item;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.item.id);
+  }
 
 }

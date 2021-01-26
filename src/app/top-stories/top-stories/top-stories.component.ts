@@ -10,21 +10,89 @@ import { Items } from 'src/app/model/items';
   styleUrls: ['./top-stories.component.scss'],
 })
 export class TopStoriesComponent implements OnInit, OnDestroy {
-  items: Items;
-  private subscription: Subscription;
-  constructor(private itemService:ItemService, private ims:ItemServiceMock) { }
+items: Items;
+total:number;
+private subscription: Subscription;
+private offset = 0;
+private limit = 10;
+private infiniteScrollComponent: any;
+private refresherComponent: any;
+constructor(private itemService: ItemService) { }
 
-  ngOnInit() {
-    this.subscription = this.ims.load(0, 10).
-    subscribe(items => {
-      this.items = items;
-      console.log(items);
-    });
-  }
-  ngOnDestroy() {
-    if(this.subscription){
-      this.subscription.unsubscribe();
-    }
-  }
+ngOnInit() {
+this.subscription = this.itemService.get()
+.subscribe(items =>{ 
+  this.items = items
+  this.total = this.itemService.total;
+  this.notifyRefreshComplete();
+});
+this.doLoad(true);
+}
 
+ngOnDestroy() {
+if (this.subscription) {
+this.subscription.unsubscribe();
+}
+
+}
+hasPrevious(): boolean {
+return this.offset > 0;
+}
+
+previous(): void {
+if (!this.hasPrevious()) {
+  return;
+}
+this.offset -= this.limit;
+this.doLoad(false);
+}
+
+load(event) {
+  this.infiniteScrollComponent = event.target;
+  if (this.hasNext()) {
+  this.next();
+  }
+}
+hasNext(): boolean {
+return this.items != null && (this.offset + this.limit) < this.total;
+}
+
+next() {
+if (!this.hasNext()) {
+return;
+}
+this.offset += this.limit;
+this.doLoad(false);
+}
+
+canRefresh(): boolean {
+return this.items != null;
+}
+
+
+refresh(event) {
+  this.refresherComponent = event.target;
+  if (!this.canRefresh()) {
+    this.offset = 0;
+    this.doLoad(true);
+  }
+}
+
+private doLoad(refresh: boolean) {
+this.itemService.load({
+offset: this.offset,
+limit: this.limit,
+refresh,
+});
+}
+private notifyScrollComplete(): void {
+  if (this.infiniteScrollComponent) {
+  this.infiniteScrollComponent.complete();
+  }
+  }
+  private notifyRefreshComplete(): void {
+  if (this.refresherComponent) {
+  this.refresherComponent.complete();
+  }
+  }
 }

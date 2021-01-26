@@ -8,7 +8,7 @@ import * as lodash from 'lodash';
 @Injectable({
     providedIn:'root'
 })
-export class ItemServiceMock extends ItemService {
+export class ItemServiceMock  {
 load(offset?: number, limit?: number): Observable<Items> {
 const results: Item[] = lodash.range(offset, offset + limit).
 map(index => ({
