@@ -1,6 +1,6 @@
 <ion-list *ngIf="items">
   <ion-item *ngFor="let item of items">
-    <app-item [item]="item"></app-item>
+    <app-item [item]="item" (toOpen)="pageOpen($event)"></app-item>
   </ion-item>
 </ion-list>
 <p *ngIf="!items">loading...</p>

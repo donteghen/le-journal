@@ -9,7 +9,7 @@
     <ion-refresher slot="fixed" [disabled]="!canRefresh()" (ionRefresh)="refresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <div>
+   <!-- <div>
       <ion-button color="light" [disabled]="!hasPrevious()" (click)="previous()">
         <ion-icon name="arrow-back" slot="start"></ion-icon>
         Prev
@@ -21,10 +21,11 @@
         <ion-icon name="arrow-forward" slot="end"></ion-icon>
         Next
       </ion-button>
-    </div>
-  <app-items [items]="items"></app-items>
-  <ion-infinite-scroll [disabled]="!hasNext()" (ionInfinite)="load($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </div> -->
+    <app-items [items]="items" (toOpen)="pageOpen($event)"></app-items>
+    <ion-infinite-scroll [disabled]="!hasNext()" (ionInfinite)="load($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-content>
 </ion-app>

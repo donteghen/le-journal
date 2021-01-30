@@ -4,6 +4,7 @@ import { combineLatest, merge, Observable, Subject} from 'rxjs';
 import { filter, map, mergeMap, skip, switchAll, take, withLatestFrom} from 'rxjs/operators'
 import { Item } from 'src/app/model/item';
 import { Items } from 'src/app/model/items';
+import * as lodash from 'lodash';
 
 export interface Query {
   refresh?: boolean;
@@ -38,7 +39,7 @@ return merge(combineLatest(this.queries, itemIds)
 map(([query, ids]) => selector(query, ids).
 pipe(take(1)))
 ),
-this.queries.pipe(
+this.queries.pipe( 
 skip(1),
 withLatestFrom(itemIds, selector)))
 .pipe(switchAll());

@@ -11,17 +11,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { StoreModule } from '@ngrx/store';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ServicesModule,
   AngularFireModule.initializeApp(environment.firebase),
-  AngularFireDatabaseModule
+  AngularFireDatabaseModule, 
+  StoreModule.forRoot({}, {}), 
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen, InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
