@@ -27,6 +27,7 @@ ngOnInit() {
 this.subscription = this.itemService.get()
 .subscribe(items =>{
  this.items = items
+ 
   this.total = this.itemService.total;
   this.notifyRefreshComplete();
 });

@@ -1,3 +1,4 @@
+
 import { environment } from './../environments/environment';
 import { ServicesModule } from './services/services.module';
 import { NgModule } from '@angular/core';
@@ -13,9 +14,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { StoreModule } from '@ngrx/store';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { AgoPipe } from './shared/ago.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AgoPipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ServicesModule,
   AngularFireModule.initializeApp(environment.firebase),

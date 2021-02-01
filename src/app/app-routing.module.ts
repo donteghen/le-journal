@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./top-stories/top-stories.module').then( m => m.TopStoriesModule)
   },
   {
+    path:'top-stories/:id/comments',
+    loadChildren : () => import('./comments/comments.module').then(m => m.CommentsModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

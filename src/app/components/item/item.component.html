@@ -7,4 +7,9 @@
     <span><ion-icon name="person"></ion-icon>{{ item.by }}</span>
     <span><ion-icon name="time"></ion-icon>{{ item.time | timeAgo }} ago</span>
   </div>
+  <ion-button *ngIf="item.kids" [fill]="'clear'"
+    routerLink="{{item.id}}/comments">
+    <ion-icon slot="icon-only" name="chatbox-ellipses-outline"></ion-icon> 
+    {{ item.kids.length }} Comments
+  </ion-button>
 </div>
