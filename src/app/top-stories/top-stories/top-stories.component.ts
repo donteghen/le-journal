@@ -103,11 +103,7 @@ private notifyScrollComplete(): void {
   }
   private notifyRefreshComplete(): void {
   if (this.refresherComponent) {
-    setTimeout(() =>{
       this.refresherComponent.complete();
-      
-    }, 3000);
-  
   }
   }
 

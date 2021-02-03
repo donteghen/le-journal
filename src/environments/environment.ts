@@ -6,8 +6,27 @@ export const environment = {
   production: false,
   firebase: {
   databaseURL: 'https://hacker-news.firebaseio.com',
+  apiKey: "AIzaSyDgVXWhdyzCljp_xJQn3q6VzuGWDeFpzLA",
+  authDomain: "le-journal-55f99.firebaseapp.com",
+  projectId: "le-journal-55f99",
+  storageBucket: "le-journal-55f99.appspot.com",
+  messagingSenderId: "252478392471",
+  appId: "1:252478392471:web:6049086bd38fccec6641d2",
+  measurementId: "G-ZXH4KEVY4X"
   } 
 };
+
+
+/*var firebaseConfig = {
+  apiKey: "AIzaSyDgVXWhdyzCljp_xJQn3q6VzuGWDeFpzLA",
+  authDomain: "le-journal-55f99.firebaseapp.com",
+  projectId: "le-journal-55f99",
+  storageBucket: "le-journal-55f99.appspot.com",
+  messagingSenderId: "252478392471",
+  appId: "1:252478392471:web:6049086bd38fccec6641d2",
+  measurementId: "G-ZXH4KEVY4X"
+};*/
+
 
 /*
  * For easier debugging in development mode, you can import the following file

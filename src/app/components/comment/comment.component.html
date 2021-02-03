@@ -1,14 +1,22 @@
-<div *ngIf="item" >
-  <div [innerHTML]="item.text"></div>
+<div *ngIf="comment" >
+  <div [innerHTML]="comment.text"></div>
   <div>
-    <span><ion-icon name="person"></ion-icon>{{ item.by }}</span>
-    <span><ion-icon name="time"></ion-icon>{{ item.time | ago }}</span>
-      <ion-button *ngIf="item.kids" [fill]="'clear'"[routerLink]="['/comments', item.id]">
-      <ion-icon slot="icon-only" name="chatbubbles-outline"></ion-icon>
-      {{ item.kids.length }}
+    <div>
+      <span style="margin-left: 6px !important;"><ion-icon name="person"></ion-icon>{{ comment.by }}</span>
+      <span style="margin-left: 6px !important;"><ion-icon name="time"></ion-icon>{{ comment.time | ago }}</span>
+      <ion-button *ngIf="comment.kids" [fill]="'clear'" (click)="toggleReplyView()">
+        <ion-icon slot="icon-only" name="chatbubbles-outline"></ion-icon> {{ comment.kids.length }}
       </ion-button>
+    </div>
+    <div *ngIf="showReplies">
+      <div *ngFor="let reply of commentsReply" style="font-style: italic; border: 2px solid gray;">
+        <div [innerHTML]="reply.text"></div>
+        <span style="margin-left: 6px !important;"><ion-icon name="person"></ion-icon>{{ reply.by }}</span>
+        <span style="margin-left: 6px !important;"><ion-icon name="time"></ion-icon>{{ reply.time | ago }}</span>
+      </div>
+    </div>
   </div>
-  </div>
-<div *ngIf="!item">
+</div>
+<div *ngIf="!comment">
 Loading...
 </div>

@@ -1,7 +1,8 @@
 import { Comment } from './../../model/comments';
-import { CommentService } from './../../services/comment.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from 'src/app/model/item';
+import { CommentService } from './../../services/comment.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-comment',
@@ -9,16 +10,25 @@ import { Item } from 'src/app/model/item';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent implements OnInit {
-  @Input() item: Comment;
-  comments: Comment[];
-  constructor(private commentService:CommentService) { }
+  @Input() comment: Comment;
+  commentsReply =  Array<any>();
+  showReplies : boolean = false;
+  sub : Subscription
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    var ids = this.item.kids;
-    //ids.map(id => this.commentService.get(id).subscribe(data => {
-      //this.comments.push(data);
-     // console.log(this.comments)
-   // }));
+  var ids = this.comment.kids? this.comment.kids : [];
+   ids.map(id => this.sub = this.commentService.get(id).subscribe(comment =>{
+    this.commentsReply.push(comment);
+  })
+  )
+  this.sub.unsubscribe();
+  }
+
+  
+
+  toggleReplyView(){
+   this.showReplies = !this.showReplies;
   }
 
 }

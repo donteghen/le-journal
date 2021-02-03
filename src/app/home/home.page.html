@@ -12,25 +12,19 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    <ion-item>
-    <ion-thumbnail slot="start">
-    <img src="http://placehold.it/100x60?text=F1">
-    </ion-thumbnail>
-    Apple
-    </ion-item>
-    <ion-item>
-    <ion-thumbnail slot="start">
-    <img src="http://placehold.it/100x60?text=F2">
-    </ion-thumbnail>
-    Banana
-    </ion-item>
-    <ion-item>
-    <ion-thumbnail slot="start">
-    <img src="http://placehold.it/100x60?text=F3">
-    </ion-thumbnail>
-    Orange
-    </ion-item>
-    </ion-list>
-    <ion-button color="primary" routerLink="/top-stories">go to Top-stories</ion-button>
+  <ion-item>
+    <ion-label>Hair Color</ion-label>
+    <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-range min="0" max="50" [(min)]="value.min" [(max)]="value.max" dual-knobs="true">
+    <ion-icon name="sad" slot="start"></ion-icon>
+    <ion-icon name="happy" slot="end"></ion-icon>
+  </ion-range>
+  <ion-item><ion-label>{{value.min}}</ion-label></ion-item>
+  <ion-button color="primary" routerLink="/top-stories">go to Top-stories</ion-button>
 </ion-content>

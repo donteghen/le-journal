@@ -4,7 +4,7 @@ import { combineLatest, merge, Observable, Subject} from 'rxjs';
 import { filter, map, mergeMap, skip, switchAll, take, withLatestFrom} from 'rxjs/operators'
 import { Item } from 'src/app/model/item';
 import { Items } from 'src/app/model/items';
-import * as lodash from 'lodash';
+
 
 export interface Query {
   refresh?: boolean;
