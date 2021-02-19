@@ -3,6 +3,7 @@ import { ItemService } from './../../services/item/item.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Items } from 'src/app/model/items';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ private infiniteScrollComponent: any;
 private refresherComponent: any;
 
 
-constructor(private itemService: ItemService, private openPageService:OpenPageService) { }
+constructor(private itemService: ItemService, private openPageService:OpenPageService, public authService: AuthService) { }
 
 ngOnInit() {
 this.subscription = this.itemService.get()

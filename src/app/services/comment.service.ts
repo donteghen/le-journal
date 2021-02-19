@@ -14,11 +14,11 @@ export class CommentService {
   constructor(private db: AngularFireDatabase) {}
 
   get(id:number): Observable<Comment>{
-    return this.db.object<Comment>('/v0/item/' + id).valueChanges()
+    return this.db.object<Comment>('https://hacker-news.firebaseio.com/v0/item/' + id).valueChanges()
   }
 
  getItem(id:number){
-   return this.db.object<Item>('/v0/item/' + id).valueChanges()
+   return this.db.object<Item>('https://hacker-news.firebaseio.com/v0/item/' + id).valueChanges()
  }
 
   

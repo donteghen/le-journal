@@ -12,6 +12,7 @@ import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/firestor
 })
 export class AuthService {
 userData: any;
+isSessionOpen: boolean;
   constructor(public firestore: AngularFirestore,private fbAuth: AngularFireAuth, private zone:NgZone, private router:Router) {
 
     this.fbAuth.authState.subscribe(user =>{
@@ -31,19 +32,21 @@ signUp(user:NewAccount){
   return this.fbAuth.createUserWithEmailAndPassword(user.email, user.password)
   .then(result =>{
     this.SendVerificationMail();
+    this.isSessionOpen =true;
     this.zone.run(() =>{
-      this.router.navigate(['/profile'])
+      this.router.navigate(['email-verify'])
     })
     this.setUserData(result.user);
   })
-  .catch((err) => {window.alert("Authentication failed")})
+  .catch((err) => {window.alert(`Authentication failed: ${err}`)})
 }
 
 login(user:EmailPasswordPair){
   return this.fbAuth.signInWithEmailAndPassword(user.email, user.password)
   .then(result =>{
+    this.isSessionOpen =true;
     this.zone.run(() =>{
-      this.router.navigate(['/profile'])
+      this.router.navigate(['profile'])
     })
     this.setUserData(result.user);
   })
@@ -69,6 +72,7 @@ get isLoggedIn(){
 logOut(){
   this.fbAuth.signOut()
   .then(() => {
+    this.isSessionOpen =false;
     localStorage.removeItem('user');
     this.router.navigate(['top-stories']);
   })
@@ -106,4 +110,11 @@ setUserData(user){
       merge: true
     })
 }
+  dataChages(user:firebase.User){
+    this.fbAuth.updateCurrentUser(user)
+    .then(result => this.setUserData(user))
+    .catch((error) => {
+    window.alert(error)
+  });
+  }
 }

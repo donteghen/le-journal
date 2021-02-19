@@ -2,7 +2,9 @@
 <ion-app>
   <ion-header>
     <ion-toolbar>
-      <ion-title>Top Stories</ion-title>
+      <ion-title routerLink="/top-stories">Top Stories</ion-title>
+      <ion-button slot="end" routerLink="/profile" *ngIf="authService.isLoggedIn"><ion-icon name="person-circle-outline"></ion-icon></ion-button>
+      <ion-button slot="end" routerLink="/login" *ngIf="!authService.isLoggedIn"><ion-icon name="log-in-outline"></ion-icon></ion-button>
     </ion-toolbar>
   </ion-header>
   <ion-content padding>

@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule
   ],
-  providers:[ItemService, OpenPageService]
+  providers:[ItemService, OpenPageService, ]
 })
 export class ServicesModule { }

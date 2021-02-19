@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/top-stories"><ion-icon slot="icon-only" name="home-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="authSerive.logOut()"><ion-icon slot="icon-only" name="log-out-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-header >
+    <ion-toolbar size="large">
+      <ion-title >
+        test profile
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <img src= " {{(user.photoURL) ? user.photoURL : 'https://source.unsplash.com/user/erondu/daily'}}" style="width: 100px; "/>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-input >{{(user.displayName) ? user.displayName : 'User'}}</ion-input>
+      </ion-card-title>
+      <ion-card-subtitle>{{user.emailVerified ? 'Verified' : 'Not Verified'}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
